@@ -12,6 +12,8 @@ import static juegodepreguntas.MenuCategorias.mdlTabla;
 import static juegodepreguntas.MenuCategorias.metodos;
 import static juegodepreguntas.MenuCategorias.personas;
 import static juegodepreguntas.MenuCategorias.puntaje;
+import static juegodepreguntas.MenuCategorias.ronda;
+import static juegodepreguntas.MenuCategorias.premio;
 import static juegodepreguntas.MenuCategorias.txtNombre;
 
 /**
@@ -20,13 +22,15 @@ import static juegodepreguntas.MenuCategorias.txtNombre;
  */
 public class Puntajes extends javax.swing.JFrame {
 
+
     //CONSTRUCTOR
     public Puntajes() {
         initComponents();
+        setLocationRelativeTo(null);
+        setResizable(false);
         setVisible(true);
         
-        vCabeceras.addElement("Nombre");
-        vCabeceras.addElement("Puntaje");
+
         mdlTabla = new DefaultTableModel(vCabeceras,0);
         jTable1.setVisible(false);
         btnVolver.setVisible(false);
@@ -43,18 +47,20 @@ public class Puntajes extends javax.swing.JFrame {
         btnGuardar = new javax.swing.JButton();
         btnVolver = new javax.swing.JButton();
 
+        setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null}
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
             },
             new String [] {
-                "Nombre", "Rango", "Puntaje"
+                "Nombre", "Ronda", "Puntaje", "Premio"
             }
         ));
         jScrollPane1.setViewportView(jTable1);
@@ -108,7 +114,7 @@ public class Puntajes extends javax.swing.JFrame {
                     .addComponent(btnVolver))
                 .addGap(26, 26, 26)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 276, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(70, Short.MAX_VALUE))
+                .addContainerGap(146, Short.MAX_VALUE))
         );
 
         pack();
@@ -118,13 +124,18 @@ public class Puntajes extends javax.swing.JFrame {
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
         String nombre = MenuCategorias.txtNombre.getText();
         int puntaje = MenuCategorias.puntaje;
+        int ronda = MenuCategorias.ronda;
+        int premio = MenuCategorias.premio;
         //VALIDA SI EL USUARIO HA REALIZADO EL CONCURSO
         if(puntaje == 0 ){
             JOptionPane.showMessageDialog(this, "Debe jugar para poder ver el puntaje");
         }else{
             //VALIDA LOS DATOS Y LOS LLENA EN LA TABLA
-            personas.setNombre(nombre);
+            
+            personas.setNombre(nombre);            
+            personas.setRonda(ronda);
             personas.setPuntaje(puntaje);
+            personas.setPremio(premio);
 
             metodos.guardar(personas);
             metodos.guardarArchivo(personas);
@@ -139,7 +150,10 @@ public class Puntajes extends javax.swing.JFrame {
 
     private void btnVolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVolverActionPerformed
         new MenuCategorias();
-        
+        puntaje=0;
+        premio=0;
+        ronda=1;
+        this.dispose();
     }//GEN-LAST:event_btnVolverActionPerformed
 
     /**

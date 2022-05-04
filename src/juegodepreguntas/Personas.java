@@ -12,17 +12,20 @@ package juegodepreguntas;
 public class Personas {
     private String codigo;
     private String nombre;
-    private int rango;
+    private int ronda;
     private int puntaje;
+    private int premio;
 
     public Personas() {
     }
 
-    public Personas(String codigo, String nombre, int rango, int puntaje) {
+    public Personas(String codigo, String nombre, int ronda, int puntaje,int premio) {
         this.codigo = codigo;
         this.nombre = nombre;
-        this.rango = rango;
+        this.ronda = ronda;
         this.puntaje = puntaje;
+        this.premio = premio;
+        
     }
 
     public String getCodigo() {
@@ -41,12 +44,12 @@ public class Personas {
         this.nombre = nombre;
     }
 
-    public int getRango() {
-        return rango;
+    public int getRonda() {
+        return ronda;
     }
 
-    public void setRango(int rango) {
-        this.rango = rango;
+    public void setRonda(int ronda) {
+        this.ronda = ronda;
     }
 
     public int getPuntaje() {
@@ -55,6 +58,14 @@ public class Personas {
 
     public void setPuntaje(int puntaje) {
         this.puntaje = puntaje;
+    }
+    
+    public int getPremio() {
+        return premio;
+    }
+
+    public void setPremio(int premio) {
+        this.premio = premio;
     }
     
     

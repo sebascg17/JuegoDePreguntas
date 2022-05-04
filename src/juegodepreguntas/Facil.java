@@ -6,13 +6,15 @@ import java.util.Collections;
 import javax.swing.JOptionPane;
 import static juegodepreguntas.MenuCategorias.nombre;
 import static juegodepreguntas.MenuCategorias.personas;
+import static juegodepreguntas.MenuCategorias.premio;
 import static juegodepreguntas.MenuCategorias.puntaje;
+import static juegodepreguntas.MenuCategorias.ronda;
 
 public final class Facil extends javax.swing.JFrame {
     //EN ESTE ARREGLO SE CREAN LAS PREGUNTAS Y RESPUESTAS
-    static String textoBaseDePreguntas = "¿Cual es el actual presidente de Colombia?\tIvan Duque\tAlvaro Uribe\tGustavo Petro\tFederico Gutierrez"
+    static String textoBaseDePreguntas = "¿Cual es el actual presidente de Colombia?\tIván Duque\tAlvaro Uribe\tGustavo Petro\tFederico Gutierrez"
             +"\n"
-            +"¿Cual es el actual presidente de Venezuela?\tNicolas Maduro\tHugo Chavez\tFidel Castro\tGustavo Petro"
+            +"¿Cual es el actual presidente de Venezuela?\tNicolás Maduro\tHugo Chavez\tFidel Castro\tGustavo Petro"
             +"\n"
             +"¿Cual es el actual presidente de Rusia?\tVladimir Putin\tFidel Castroky\tGustavo Petrosky\tChavezosky"
             +"\n"
@@ -83,8 +85,10 @@ public final class Facil extends javax.swing.JFrame {
         //VALIDA LA RESPUESTA CORRECTA Y SUMA UN PUNTO
         if (Opciones.get(n).equals(respuesta)) {
             puntaje++;
+            premio = premio+200000;
             personas.setPuntaje(puntaje);
-            JOptionPane.showMessageDialog(this,nombre+", su respuesta es correcta, su puntaje actual es: "+puntaje,
+            personas.setPremio(premio);
+            JOptionPane.showMessageDialog(this,nombre+", su respuesta es correcta, su puntaje actual es: "+puntaje+", ganando $"+premio+" pesos",
                     "¡Muy bien!",
                     JOptionPane.INFORMATION_MESSAGE
             );
@@ -95,23 +99,30 @@ public final class Facil extends javax.swing.JFrame {
                     "Que mal :(",
                     JOptionPane.ERROR_MESSAGE
             );
-            JOptionPane.showMessageDialog(this,nombre+", su puntaje es: "+puntaje,
+            JOptionPane.showMessageDialog(this,nombre+", su puntaje es: "+puntaje+", ganando $"+premio+" pesos",
                     "¡Sigue intentandolo!",
                     JOptionPane.INFORMATION_MESSAGE
             );
             new Puntajes();
+            this.dispose();
         }
         jugar();
-    } 
+    }
     
     //ESTA FUNCION VALIDA SI SE RESPONDIERON TODAS LAS PREGUNTAS DEL ACTUAL NIVEL Y CONTINUA CON EL OTRO NIVEL
     public void jugar(){
-        if (n_pregunta==cantidadDePreguntas) {
-            JOptionPane.showMessageDialog(this,nombre+", siguiente nivel, su puntaje es: "+puntaje,
+        if (puntaje==10) {
+            ronda++;
+            JOptionPane.showMessageDialog(this,nombre+", has pasado a la ronda, #" +ronda ,
                     "Muy bien",
                     JOptionPane.PLAIN_MESSAGE
             );
+            JOptionPane.showMessageDialog(this,"Su puntaje es: "+puntaje+"\nGanando $"+premio+" pesos"+"\nIncrementando a $300000 pesos por cada respuesta correcta en la siguiente ronda.",
+                    ":)",
+                    JOptionPane.PLAIN_MESSAGE
+            );
             new Medio();
+            this.dispose();
         }
         escogerPregunta(n_pregunta);
         mostrarPregunta();
@@ -140,7 +151,7 @@ public final class Facil extends javax.swing.JFrame {
         btnOpcion3 = new javax.swing.JButton();
         btnOpcion4 = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);

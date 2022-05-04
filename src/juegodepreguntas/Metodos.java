@@ -33,7 +33,10 @@ public class Metodos {
             BufferedWriter bw = new BufferedWriter(fw);
             PrintWriter pw = new PrintWriter(bw);
             pw.printf(persona.getNombre());
-            pw.println("|"+persona.getPuntaje());
+            pw.printf("|"+persona.getRonda());
+            pw.printf("|"+persona.getPuntaje());
+            pw.println("|"+"$"+persona.getPremio());
+            
             pw.close();
             
         } catch (Exception e) {
@@ -47,7 +50,9 @@ public class Metodos {
     public DefaultTableModel listaPersonas(){
             Vector cabeceras = new Vector();
             cabeceras.addElement("Nombre");
+            cabeceras.addElement("Ronda");
             cabeceras.addElement("Puntaje");
+            cabeceras.addElement("Premio");
             DefaultTableModel mdlTabla = new DefaultTableModel(cabeceras,0);
             
         try {

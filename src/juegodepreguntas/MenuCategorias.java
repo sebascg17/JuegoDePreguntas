@@ -24,7 +24,8 @@ public class MenuCategorias extends javax.swing.JFrame {
     static Vector vCabeceras = new Vector();
     static String nombre = "";
     static int puntaje = 0;
-    
+    static int ronda = 1;
+    static int premio = 0;       
     
     //CONSTRUCTOR
     public MenuCategorias() {
@@ -145,6 +146,7 @@ public class MenuCategorias extends javax.swing.JFrame {
         }else{
         //SI TIENE CARACTERES EN EL CAMPO INICIA EL TEST Y VALIDA EL TEXTO INGRESADO   
             new MuyFacil();
+            this.dispose();
             nombre=txtNombre.getText();
             
             
